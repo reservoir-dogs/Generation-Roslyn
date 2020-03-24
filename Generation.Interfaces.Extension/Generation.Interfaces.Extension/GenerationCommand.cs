@@ -1,10 +1,13 @@
-﻿using System;
-using System.ComponentModel.Design;
-using System.Globalization;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using Generation.Interface;
+
+using Microsoft.VisualStudio.ComponentModelHost;
+using Microsoft.VisualStudio.LanguageServices;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
+
+using System;
+using System.ComponentModel.Design;
+
 using Task = System.Threading.Tasks.Task;
 
 namespace Generation.Interfaces.Extension
@@ -89,10 +92,19 @@ namespace Generation.Interfaces.Extension
         private void Execute(object sender, EventArgs e)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            string message = string.Format(CultureInfo.CurrentCulture, "Inside {0}.MenuItemCallback()", this.GetType().FullName);
-            string title = "GenerationCommand";
 
-            // Show a message box to prove we were here
+            var componentModel = ServiceProvider.GetServiceAsync(typeof(SComponentModel)).Result as IComponentModel;
+            var currentWorkspace = componentModel.GetService<VisualStudioWorkspace>();
+
+            var projectFinder = new ProjectFinder(currentWorkspace.CurrentSolution);
+            var generator = new Generator();
+            var recorder = new Recorder(projectFinder, generator);
+
+            recorder.Save();
+
+            string message = "Terminé avec succès";
+            string title = "Génération";
+
             VsShellUtilities.ShowMessageBox(
                 this.package,
                 message,

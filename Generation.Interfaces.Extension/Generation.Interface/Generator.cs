@@ -1,9 +1,7 @@
 ﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
 
-[assembly: InternalsVisibleTo("Generation.Interface.Tests")]
 namespace Generation.Interface
 {
     public class Generator

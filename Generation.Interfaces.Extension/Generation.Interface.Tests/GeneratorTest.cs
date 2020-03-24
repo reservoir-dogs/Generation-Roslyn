@@ -66,7 +66,7 @@ namespace Generation.Interface.Tests
         }
 
         [Fact]
-        public void BuildCode_MethodeWithReturnType_Success()
+        public void BuildCode_MethodWithReturnType_Success()
         {
             var content =
 @"namespace Generation.Implementations
@@ -92,7 +92,7 @@ namespace Generation.Interface.Tests
         }
 
         [Fact]
-        public void BuildCode_MethodeWithOneParameter_Success()
+        public void BuildCode_MethodWithOneParameter_Success()
         {
             var content =
 @"namespace Generation.Implementations
@@ -118,7 +118,7 @@ namespace Generation.Interface.Tests
         }
 
         [Fact]
-        public void BuildCode_MethodeWithTwoMethods_Success()
+        public void BuildCode_InterfaceWithTwoMethods_Success()
         {
             var content =
 @"namespace Generation.Implementations
@@ -148,7 +148,7 @@ namespace Generation.Interface.Tests
         }
 
         [Fact]
-        public void BuildCode_MethodeWithTwoParameters_Success()
+        public void BuildCode_MethodWithTwoParameters_Success()
         {
             var content =
 @"namespace Generation.Implementations

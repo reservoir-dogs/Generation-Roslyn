@@ -39,16 +39,20 @@ namespace Generation.Interface
 
         private void Save(string code, string path)
         {
+            var directory = Directory.GetParent(path).FullName;
+            if (!Directory.Exists(directory))
+                Directory.CreateDirectory(directory);
+
             File.WriteAllText(path, code);
         }
 
-        internal string GetPath(Project project, ClassDeclarationSyntax classDeclarationSyntax)
+        private string GetPath(Project project, ClassDeclarationSyntax classDeclarationSyntax)
         {
-            var projectDirectoryPath = Path.GetDirectoryName(project.FilePath);
+            var projectDirectoryPath = Path.GetDirectoryName(project.FilePath).Replace(".Implementations", string.Empty);
             var namespaceDeclarationSyntax = classDeclarationSyntax.GetNamespace();
-            var subDirectoryPath = namespaceDeclarationSyntax.Name.ToString().Replace(project.AssemblyName, string.Empty).Replace(".", @"\");
+            var subDirectoryPath = namespaceDeclarationSyntax.Name.ToString().Replace($"{project.AssemblyName}.", string.Empty).Replace(".", @"\");
 
-            var result = Path.Combine(projectDirectoryPath, subDirectoryPath, $"I{classDeclarationSyntax.Identifier.ValueText}");
+            var result = Path.Combine(projectDirectoryPath, subDirectoryPath, $"I{classDeclarationSyntax.Identifier.ValueText}.cs");
 
             return result;
         }

@@ -56,7 +56,7 @@
         <Parent guid="guidGenerationCommandPackageCmdSet" id="MyMenuGroup" />
         <Icon guid="guidImages" id="bmpPic1" />
         <Strings>
-          <ButtonText>Invoke GenerationCommand</ButtonText>
+          <ButtonText>Génération des interfaces</ButtonText>
         </Strings>
       </Button>
     </Buttons>

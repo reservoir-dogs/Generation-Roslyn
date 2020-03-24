@@ -36,6 +36,7 @@ namespace Generation.Interfaces.Extension
     [ProvideMenuResource("Menus.ctmenu", 1)]
     [Guid(GenerationCommandPackage.PackageGuidString)]
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "pkgdef, VS and vsixmanifest are valid VS terms")]
+    [ProvideBindingPath]
     public sealed class GenerationCommandPackage : AsyncPackage
     {
         /// <summary>
